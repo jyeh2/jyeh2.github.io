@@ -37,10 +37,10 @@
 
     <ul>
       <li>Intermittent /dev/dri creation</li>
-      <li>LightDM crashing with “no screens found”</li>
+      <li>LightDM crashing with "no screens found"</li>
       <li>PCode initialization timeouts</li>
-      <li>“Survivability mode”</li>
-      <li>Silent <code>xe</code> hangs immediately after “deactivate VGA console”</li>
+      <li>"Survivability mode"</li>
+      <li>Silent <code>xe</code> hangs immediately after "deactivate VGA console"</li>
       <li>Different kernel behavior (6.8, 6.17 generic, 6.17 OEM)</li>
       <li>Card occasionally disappearing from <code>lspci</code> after reseating</li>
     </ul>
@@ -48,13 +48,13 @@
     <p>
       At one point it looked more like hardware damage than firmware corruption.
       I checked for obvious shorts on 12V and 3.3V rails, and measured resistance/voltages on Vcore,
-      memory, and memory controller rails. Nothing abnormal showed up, but that’s the extent of my EE knowledge.
+      memory, and memory controller rails. Nothing abnormal showed up, but that's the extent of my EE knowledge.
     </p>
 
     <h2>Recovery</h2>
 
     <p>
-      Using Intel’s <code>igsc</code> tool compiled from source, I was able to access the Graphics Security Controller
+      Using Intel's <code>igsc</code> tool compiled from source, I was able to access the Graphics Security Controller
       through <code>/dev/mei1</code> and reflash the GSC firmware from 21.1137 to 21.1182.
     </p>
 
@@ -94,7 +94,7 @@
       <li><a href="https://github.com/intel/igsc">Intel GSC tooling (igsc)</a></li>
       <li><a href="https://fwupd.org/">fwupd project</a></li>
       <li><a href="https://docs.kernel.org/gpu/xe/">Linux xe driver documentation</a></li>
-      <li><a href="https://www.igorslab.de/en/intel-arc-b580-in-teardown-board-topology-power-consumption-with-load-peaks-and-a-putty-mod/3/">Igor’s Lab teardown context</a></li>
+      <li><a href="https://www.igorslab.de/en/intel-arc-b580-in-teardown-board-topology-power-consumption-with-load-peaks-and-a-putty-mod/3/">Igor's Lab teardown context</a></li>
       <li><a href="https://forums.linuxmint.com/viewtopic.php?t=441848">Linux Mint discussion 1</a></li>
       <li><a href="https://forums.linuxmint.com/viewtopic.php?t=424779">Linux Mint discussion 2</a></li>
     </ul>
@@ -102,17 +102,23 @@
     <p>
       Also collected VRM rail resistance measurements during debugging if someone needs it(provided i didnt delete the pics from my phone lol).
     </p>
+
     <h2>Images</h2>
 
-<p>Board / teardown / reference images:</p>
+    <p>Board / teardown / reference images:</p>
 
-<img src="../assets/b580troubleshoot/20260520_234605.jpg" alt="B580 image 1">
+    <a href="#img1"><img src="../assets/b580troubleshoot/20260520_234605.jpg" alt="B580 image 1"></a>
+    <div class="lightbox" id="img1"><a href="#"><img src="../assets/b580troubleshoot/20260520_234605.jpg" alt="B580 image 1"></a></div>
 
-<img src="../assets/b580troubleshoot/20260520_235734.jpg" alt="B580 image 2">
+    <a href="#img2"><img src="../assets/b580troubleshoot/20260520_235734.jpg" alt="B580 image 2"></a>
+    <div class="lightbox" id="img2"><a href="#"><img src="../assets/b580troubleshoot/20260520_235734.jpg" alt="B580 image 2"></a></div>
 
-<img src="../assets/b580troubleshoot/20260521_000027.jpg" alt="B580 image 3">
+    <a href="#img3"><img src="../assets/b580troubleshoot/20260521_000027.jpg" alt="B580 image 3"></a>
+    <div class="lightbox" id="img3"><a href="#"><img src="../assets/b580troubleshoot/20260521_000027.jpg" alt="B580 image 3"></a></div>
 
-<img src="../assets/b580troubleshoot/20260528_022205.jpg" alt="B580 image 4">
+    <a href="#img4"><img src="../assets/b580troubleshoot/20260528_022205.jpg" alt="B580 image 4"></a>
+    <div class="lightbox" id="img4"><a href="#"><img src="../assets/b580troubleshoot/20260528_022205.jpg" alt="B580 image 4"></a></div>
+
   </div>
 </body>
 </html>
