@@ -33,3 +33,6 @@ img {
   object-fit: cover;
   display: block;
 }
+img + img {
+  margin-top: 16px;
+}
