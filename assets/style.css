@@ -5,29 +5,31 @@ body {
   background: #0b0f14;
   color: #e6edf3;
 }
-
 .container {
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
 }
-
 a {
   color: #7aa2f7;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
-
 code {
   background: #1a2230;
   padding: 2px 5px;
   border-radius: 4px;
 }
-
 .meta {
   color: #9aa4b2;
   font-size: 0.9em;
+}
+img {
+  width: 100%;
+  max-width: 720px;
+  height: 400px;
+  object-fit: cover;
+  display: block;
 }
