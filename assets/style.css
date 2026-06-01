@@ -46,6 +46,7 @@ img + img {
   justify-content: center;
   align-items: center;
   cursor: zoom-out;
+  text-decoration: none;
 }
 
 .lightbox:target {
@@ -58,4 +59,5 @@ img + img {
   height: auto;
   width: auto;
   object-fit: contain;
+  cursor: default;
 }
