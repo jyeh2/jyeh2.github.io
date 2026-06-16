@@ -20,15 +20,15 @@
     <h2>CH341A preparation — killing the 5V line</h2>
 
     <p>
-      Stock CH341A programmers are not safe to use on modern SPI flash chips without modification.
-      The board supplies 5V on the data lines by default, even though the SPI chip on the B580 runs at 3.3V.
-      Connecting a 5V programmer to a 3.3V chip risks permanently damaging the flash.
+      Stock CH341A programmers are not safe to use on modern SPI flash chips without modification. Or so they say, Im doing it anyways. 3.3v feels safer than 5v when its the flashers says 3.3v operation.
+      The board supplies 5V on the data lines by default(MOSI and MISO I believe), the SPI chip on the b580 runs at 1.8v, so after modification, you will need another 1.8v adapter to go on top
     </p>
 
     <p>
       The fix was to destroy the 5V trace feeding the ZIF socket with a blade, then run a jumper wire
       from the 3.3V rail to the point where the 5V line used to feed. After the mod, MOSI and MISO
       were confirmed clean at 3.3V before the SOIC8 clip touched anything on the card.
+      I obviously didnt have a jumper, so I just wrapped the 3.3v and 5v header with some cable organizer wires. 
     </p>
 
     <h2>Dumping the SPI flash</h2>
@@ -36,18 +36,18 @@
     <p>
       The SPI flash on the ASRock B580 Challenger was accessed via SOIC8 clip with the card fully
       powered off and disconnected from the system. The dump was read three times. All three reads
-      diffed as identical, confirming a clean capture. This image became <code>b580true1.bin</code>.
+      diffed as identical, confirming a clean capture. The Asrock variant of the b580 uses a GigaDevice 8MB 25LB64ESIG
     </p>
 
     <p>
       A second physical ASRock B580 Challenger was sourced and the same procedure was repeated under
-      identical conditions to produce <code>b580working.bin</code> as a known-good reference.
+      identical conditions to produce another bios dump as a known-good reference.
     </p>
 
     <h2>Binary comparison: b580true1.bin vs b580working.bin</h2>
 
     <p>
-      Both images share the same overall SPI layout. The following regions are byte-for-byte identical
+      Both images share the same overall SPI layout. The following regions are byte-for-byte identical. Im still on the edge of whether to share it with the firmware matrix yet, but likely claude probably already has it lol
       between the two dumps:
     </p>
 
