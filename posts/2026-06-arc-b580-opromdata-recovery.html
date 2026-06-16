@@ -11,16 +11,16 @@
 
     <a href="../index.html">← back</a>
 
-    <h1>Intel Arc B580 firmware debugging — part 2 (opromdata &amp; VBT dissection)</h1>
+    <h1>Intel Arc B580 firmware debugging, part 2 (opromdata &amp; VBT dissection)</h1>
 
     <p class="meta">
-      Continuing from the GSC recovery — investigating the remaining GuC idle crash and PCODE instability through opromdata analysis.
+      Continuing from the GSC recovery: investigating the remaining GuC idle crash and PCODE instability through opromdata analysis.
     </p>
 
     <p>
       The GSC reflash got the card online, but two problems persisted. PCODE was still intermittently
       failing on cold boot, and a GuC idle crash loop was occurring roughly 90 seconds after the desktop
-      loaded regardless of workload — <code>guc_exec_queue_timedout_job, seqno=213, in no process [-1]</code>.
+      loaded regardless of workload. <code>guc_exec_queue_timedout_job, seqno=213, in no process [-1]</code>.
     </p>
 
     <h2>Narrowing the remaining problem</h2>
