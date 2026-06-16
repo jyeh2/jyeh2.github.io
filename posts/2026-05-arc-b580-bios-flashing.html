@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Intel Arc B580 firmware debugging — part 3 (CH341A physical flash)</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <a href="../index.html">← back</a>
+
+    <h1>Intel Arc B580 firmware debugging — part 3 (CH341A physical flash)</h1>
+
+    <p class="meta">
+      Continuing from the opromdata &amp; VBT dissection — physical SPI dump, binary comparison, and the working firmware write.
+    </p>
+
+    <h2>CH341A preparation — killing the 5V line</h2>
+
+    <p>
+      Stock CH341A programmers are not safe to use on modern SPI flash chips without modification.
+      The board supplies 5V on the data lines by default, even though the SPI chip on the B580 runs at 3.3V.
+      Connecting a 5V programmer to a 3.3V chip risks permanently damaging the flash.
+    </p>
+
+    <p>
+      The fix was to destroy the 5V trace feeding the ZIF socket with a blade, then run a jumper wire
+      from the 3.3V rail to the point where the 5V line used to feed. After the mod, MOSI and MISO
+      were confirmed clean at 3.3V before the SOIC8 clip touched anything on the card.
+    </p>
+
+    <h2>Dumping the SPI flash</h2>
+
+    <p>
+      The SPI flash on the ASRock B580 Challenger was accessed via SOIC8 clip with the card fully
+      powered off and disconnected from the system. The dump was read three times. All three reads
+      diffed as identical, confirming a clean capture. This image became <code>b580true1.bin</code>.
+    </p>
+
+    <p>
+      A second physical ASRock B580 Challenger was sourced and the same procedure was repeated under
+      identical conditions to produce <code>b580working.bin</code> as a known-good reference.
+    </p>
+
+    <h2>Binary comparison: b580true1.bin vs b580working.bin</h2>
+
+    <p>
+      Both images share the same overall SPI layout. The following regions are byte-for-byte identical
+      between the two dumps:
+    </p>
+
+    <ul>
+      <li>FPT partition structure</li>
+      <li>fwcode version — 21.1098 on both</li>
+      <li>FITB partition — all <code>0xFF</code> on both, meaning neither card has a populated backup firmware slot</li>
+      <li>Primary VBT block — 7,287 bytes, identical in both images</li>
+    </ul>
+
+    <p>
+      The divergence is entirely in the opromdata region. In <code>b580working.bin</code>, the OROM manifest
+      entry (<code>a-OROM.man</code>) sits at the expected offset within the <code>$CPD</code> partition,
+      correctly aligned. In <code>b580true1.bin</code>, that same manifest entry is shifted 16 bytes forward
+      from where it should be.
+    </p>
+
+    <p>
+      The OROM code build also differs between the two: build 1051 in the working image versus build 1065
+      in the corrupted one. This suggests the card had received a partial or interrupted opromdata update
+      at some point that shifted the manifest without completing cleanly — consistent with the card's history
+      of occasional PCODE failures before things became permanent.
+    </p>
+
+    <p>
+      Critically, both opromdata slots on the corrupted card (A and B) carried the same 16-byte shift.
+      The two slots were identical to each other. There was no clean copy anywhere on chip to recover from.
+    </p>
+
+    <h2>Writing the working firmware</h2>
+
+    <p>
+      The working firmware from <code>b580working.bin</code> was written to the SPI chip via CH341A
+      and verified with a full readback diff. The write confirmed byte-for-byte identical to the source image.
+    </p>
+
+    <h2>Post-flash state</h2>
+
+    <p>
+      The card stabilised enough to reach desktop and run light workloads at 720p low settings.
+      Artifacting and crashes appeared under heavier load at 1080p medium settings. FurMark produced
+      a DMA violation BSOD on Windows with ReBAR enabled.
+    </p>
+
+    <p>
+      At this point the opromdata mismatch hypothesis was substantially weakened. The card now held
+      clean firmware from a confirmed working donor, yet instability under load persisted. Diagnosis
+      shifted toward a hardware failure explanation, with VRAM as the primary suspect based on the
+      idle framebuffer corruption pattern and the nature of the DMA violation.
+    </p>
+
+    <h2>References</h2>
+
+    <ul>
+      <li><a href="https://github.com/intel/igsc">Intel GSC tooling (igsc)</a></li>
+      <li><a href="https://github.com/Solaris17/Arc-Firmware">Solaris17 Arc-Firmware repository</a></li>
+      <li><a href="https://github.com/fwupd/fwupd/issues/9889">fwupd issue #9889 — opromdata 4-ID matching</a></li>
+    </ul>
+
+  </div>
+</body>
+</html>
