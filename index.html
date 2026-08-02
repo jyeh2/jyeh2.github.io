@@ -2,55 +2,116 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
-  <div class="container">
+  <div class="container home">
+
+    <p class="kicker">UC San Diego math, computer science, and linguistics — incoming CMU MS in software engineering, building inference infrastructure and firmware recovery tools outside of coursework.</p>
 
     <h1>Hardware, Firmware &amp; Software Projects</h1>
     <p>This is where I write up projects I build outside of coursework, hardware and firmware experiments alongside software engineering work.</p>
-<p>Recent focus has been GPU firmware recovery on Intel Arc cards, including BIOS flashing and GSC firmware recovery.</p>
-   
+    <p>Recent focus has been GPU firmware recovery on Intel Arc cards, including BIOS flashing and GSC firmware recovery.</p>
 
+    <h2>Software and Systems Work</h2>
 
-    <h2>Academic/Work Projects</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="assets/cards/hkn-portal.jpg" alt="HKN Member Portal screenshot">
+        <div class="card-body">
+          <h3><a href="https://github.com/HKN-UCSD/hkn-portal">HKN Member Portal</a></h3>
+          <p>Django and Svelte web app for HKN, deployed on AWS, serving about 2300 monthly users.</p>
+          <div class="tags">
+            <span class="tag">Django</span>
+            <span class="tag">Svelte</span>
+            <span class="tag">AWS</span>
+          </div>
+        </div>
+      </div>
 
+      <div class="card">
+        <img src="assets/cards/asfunding-chatbot.jpg" alt="AS Office of Student Organizations funding site">
+        <div class="card-body">
+          <h3><a href="https://github.com/jyeh2/Funding-Guide-ChatBot">AS Funding Chatbot</a></h3>
+          <p>Retrieval augmented chatbot using Pinecone and LangGraph for retrieval and GPT-4 for generation, built for Senate funding and reporting questions.</p>
+          <div class="tags">
+            <span class="tag">Pinecone</span>
+            <span class="tag">LangGraph</span>
+            <span class="tag">GPT4</span>
+          </div>
+        </div>
+      </div>
 
-    <ul>
-      <li><a href="https://github.com/HKN-UCSD/hkn-portal"><strong>HKN Member Portal</strong></a>: Django and Svelte web app for HKN, deployed on AWS, serving about 2300 monthly users.</li>
-      <li><a href="https://github.com/jyeh2/Funding-Guide-ChatBot"><strong>AS Funding Chatbot</strong></a>: Retrieval augmented chatbot using Pinecone and LangGraph for retrieval and GPT-4 for generation, built for Senate funding and reporting questions.</li>
-      <li><a href="https://github.com/jyeh2/UCSD_Course_Advisor_LLM"><strong>Course Planner</strong></a>: LLM-powered course planning assistant for UCSD students, using Neo4j and FAISS for retrieval to help map out class schedules based on major requirements.</li>
-      <li><a href="https://github.com/jyeh2/gpu-accelerated-empirical-ml-replication"><strong>GPU-Accelerated Empirical ML Replication</strong></a>: Jupyter Notebook project comparing CuML (RAPIDS GPU-accelerated ML) against standard CPU implementations, run on A30 and V100 GPUs through UCSD's Datahub, with data compressed as tar.xz to fit storage quotas and results visualized across several notebooks.</li>
-      <li><a href="https://github.com/jyeh2/HMM-Word-Classifier"><strong>HMM Word Classifier</strong></a>: Linguistics 168 (Computational Speech Processing) project using Hidden Markov Models to classify fruit names from audio pronunciation, using librosa for audio processing.</li>
-    </ul>
+      <div class="card">
+        <div class="card-body">
+          <h3><a href="https://github.com/jyeh2/UCSD_Course_Advisor_LLM">Course Planner</a></h3>
+          <p>LLM-powered course planning assistant for UCSD students, using Neo4j and FAISS for retrieval to help map out class schedules based on major requirements.</p>
+          <div class="tags">
+            <span class="tag">Neo4j</span>
+            <span class="tag">FAISS</span>
+          </div>
+        </div>
+      </div>
 
-    <h2>Personal Projects</h2>
+      <div class="card">
+        <div class="card-body">
+          <h3><a href="https://github.com/jyeh2/gpu-accelerated-empirical-ml-replication">GPU-Accelerated Empirical ML Replication</a></h3>
+          <p>Jupyter Notebook project comparing CuML (RAPIDS GPU-accelerated ML) against standard CPU implementations, run on A30 and V100 GPUs through UCSD's Datahub, with data compressed as tar.xz to fit storage quotas and results visualized across several notebooks.</p>
+          <div class="tags">
+            <span class="tag">CuML</span>
+            <span class="tag">RAPIDS</span>
+            <span class="tag">CUDA</span>
+          </div>
+        </div>
+      </div>
 
+      <div class="card">
+        <div class="card-body">
+          <h3><a href="https://github.com/jyeh2/HMM-Word-Classifier">HMM Word Classifier</a></h3>
+          <p>Linguistics 168 (Computational Speech Processing) project using Hidden Markov Models to classify fruit names from audio pronunciation, using librosa for audio processing.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">librosa</span>
+            <span class="tag">HMM</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <ul>
-      <li>
-        <a href="posts/2026-06-arc-b580-bios-flashing.html">
-          Intel Arc B580: The nuclear option(flash and dump)
-        </a>
-      </li>
-      <li>
-        <a href="posts/2026-06-arc-b580-opromdata-recovery.html">
-          Intel Arc B580: More GSC firmware recovery through igsc
-        </a>
-      </li>
-      <li>
-        <a href="posts/2026-05-arc-b580-gsc-recovery.html">
-          Intel Arc B580: GSC firmware recovery and xe bring-up issues
-        </a>
-      </li>
-      <li>
-        <a href="posts/2026-03-arc-b570-thermalpads.html">
-          Intel Arc B570: Thermal Pads
-        </a>
-      </li>
-    </ul>
+    <h2>Hardware and Firmware</h2>
+
+    <div class="card-grid">
+      <a class="card post-card" href="posts/2026-06-arc-b580-bios-flashing.html">
+        <img src="assets/cards/arc-b580-bios-flashing.jpg" alt="Flashrom terminal session next to a disassembled Arc B580">
+        <div class="card-body">
+          <h3>Intel Arc B580: The nuclear option(flash and dump)</h3>
+        </div>
+      </a>
+
+      <a class="card post-card" href="posts/2026-06-arc-b580-opromdata-recovery.html">
+        <img src="assets/cards/arc-b580-opromdata-recovery.jpg" alt="Device Manager showing Arc B580 in recovery mode">
+        <div class="card-body">
+          <h3>Intel Arc B580: More GSC firmware recovery through igsc</h3>
+        </div>
+      </a>
+
+      <a class="card post-card" href="posts/2026-05-arc-b580-gsc-recovery.html">
+        <img src="assets/cards/arc-b580-gsc-recovery.jpg" alt="Close-up of Arc B580 board components">
+        <div class="card-body">
+          <h3>Intel Arc B580: GSC firmware recovery and xe bring-up issues</h3>
+        </div>
+      </a>
+
+      <a class="card post-card" href="posts/2026-03-arc-b570-thermalpads.html">
+        <img src="assets/cards/arc-b570-thermalpads.jpg" alt="Thermal pad close-up on Arc B570 heatsink">
+        <div class="card-body">
+          <h3>Intel Arc B570: Thermal Pads</h3>
+        </div>
+      </a>
+    </div>
 
   </div>
 </body>
